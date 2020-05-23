@@ -1,0 +1,20 @@
+5/23/2020 15:59:49 Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None5/23/2020 15:59:50 Information Executed DbCommand (29ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[ID], [u].[FIRSTNAME], [u].[ISACTIVE], [u].[LASTNAME]
+FROM [USERS] AS [u]5/23/2020 15:59:58 Information Executed DbCommand (38ms) [Parameters=[@p0='?' (Size = 50), @p1='?' (Size = 50)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [USERS] ([FIRSTNAME], [LASTNAME])
+VALUES (@p0, @p1);
+SELECT [ID], [ISACTIVE]
+FROM [USERS]
+WHERE @@ROWCOUNT = 1 AND [ID] = scope_identity();
+5/23/2020 15:59:58 Information Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 50), @p1='?' (Size = 50)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [USERS] ([FIRSTNAME], [LASTNAME])
+VALUES (@p0, @p1);
+SELECT [ID], [ISACTIVE]
+FROM [USERS]
+WHERE @@ROWCOUNT = 1 AND [ID] = scope_identity();
+5/23/2020 16:00:22 Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+5/23/2020 16:00:23 Information Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[ID], [u].[FIRSTNAME], [u].[ISACTIVE], [u].[LASTNAME]
+FROM [USERS] AS [u]

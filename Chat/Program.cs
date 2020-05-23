@@ -23,14 +23,10 @@ namespace Chat
             var config = builder.Build();
             string connectionString = config.GetConnectionString("DefaultConnection");
             var optionsBuilder = new DbContextOptionsBuilder<ChatContext>();
+            
             optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder =>
             {
-                builder
-                .AddFilter((category, level) => 
-                category == DbLoggerCategory.Database.Command.Name 
-                && category == DbLoggerCategory.Database.Connection.Name
-                && level == LogLevel.Information)
-                .AddProvider(new FIleLoggerProvider());
+                builder.AddProvider(new FileLoggerProvider("log.txt"));
             }));
 
             var options = optionsBuilder
@@ -40,6 +36,20 @@ namespace Chat
             using (ChatContext db = new ChatContext(options))
             {
                 var users = db.Users.ToList();
+
+                db.Users.Add(new User
+                {
+                    Firstname = "TestFN",
+                    Lastname = "LName"
+                });
+
+                db.Users.Add(new User
+                {
+                    Firstname = "TestFN2",
+                    Lastname = "LName2"
+                });
+
+                db.SaveChanges();
             }
 
             CreateHostBuilder(args).Build().Run();
