@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chat.Models
+namespace Chat.Models.DTO
 {
     public class RecentlyActiveSessionData 
     {

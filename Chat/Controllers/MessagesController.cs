@@ -1,4 +1,5 @@
 ﻿using Chat.Models;
+using Chat.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -9,19 +10,16 @@ namespace Chat.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MessagesController : Controller
+    public class MessagesController : BaseController<Message>
     {
-        public MessagesController(ChatContext dataProvider)
-        {
-            DataProvider = dataProvider;
-        }
+        public MessagesController(ChatContext dataProvider) : base(dataProvider) { }
 
-        protected ChatContext DataProvider { get; private set; }
+        protected override DbSet<Message> Models => DataProvider.Messages;
 
         [HttpGet("[action]/{sessionId}")]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessagesBySessionId(int sessionId)
         {
-            return await DataProvider.Messages
+            return await Models
                 .FromSqlRaw("GetMessagesBySessionId @sessionId", new SqlParameter("@sessionId", sessionId))
                 .ToArrayAsync();
         }
@@ -38,7 +36,7 @@ namespace Chat.Controllers
 
             Message newMessage = new Message(sessionUser);
             newMessage.Text = message.Text;
-            DataProvider.Messages.Add(newMessage);
+            Models.Add(newMessage);
             await DataProvider.SaveChangesAsync();
             return Ok(newMessage);
         }

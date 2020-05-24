@@ -2,7 +2,7 @@
 
 namespace Chat.Models
 {
-    public partial class User
+    public partial class User : BaseModel
     {
         public User()
         {
@@ -10,7 +10,6 @@ namespace Chat.Models
             SessionsUsersMap = new HashSet<SessionUserMap>();
         }
 
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsActive { get; set; }

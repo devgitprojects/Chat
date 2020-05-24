@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Chat.Models
 {
 
-    public partial class Message : SimpleMessage
+    public partial class Message : BaseModel
     {
         public Message()
         {
@@ -16,7 +16,8 @@ namespace Chat.Models
             SessionUserMap = sessionUserMap;
         }
 
-        public int Id { get; set; }
+        public string Text { get; set; }
+        public int SessionUserId { get; set; }
         public DateTime Date { get; set; }
         public bool IsHidden { get; set; }
 

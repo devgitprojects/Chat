@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Chat.Models
 {
-    public partial class Session
+    public partial class Session : BaseModel
     {
         public Session()
         {
@@ -15,7 +15,6 @@ namespace Chat.Models
             IsAdminSession = isAdminSession;
         }
 
-        public int Id { get; set; }
         public DateTime Date { get; set; }
         public bool IsAdminSession { get; set; }
 
