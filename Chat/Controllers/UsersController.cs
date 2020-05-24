@@ -25,7 +25,7 @@ namespace Chat.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
-            return await DataProvider.Users.ToListAsync();
+            return await DataProvider.Users.ToArrayAsync();
         }
 
         // GET <controller>/5

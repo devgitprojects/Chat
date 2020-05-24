@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Chat.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,7 +27,14 @@ namespace Chat.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SessionUserMap>>> Get()
         {
-            return await DataProvider.SessionsUsersMap.ToListAsync();
+            return await DataProvider.SessionsUsersMap.ToArrayAsync();
+        }
+
+        [HttpGet("[action]/{userId}")]
+        public async Task<ActionResult<IEnumerable<RecentlyActiveSessionData>>> GetRecentlyActiveSessionIDs(int userId)
+        {
+            return await DataProvider.RecentlyActiveSessionData
+                .FromSqlRaw("GetRecentlyActiveSessionIDs @userId", new SqlParameter("@userId", userId)).ToArrayAsync();
         }
 
         [HttpPost]

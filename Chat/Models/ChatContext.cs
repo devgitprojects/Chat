@@ -21,6 +21,7 @@ namespace Chat.Models
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<SessionUserMap> SessionsUsersMap { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public DbSet<RecentlyActiveSessionData> RecentlyActiveSessionData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
