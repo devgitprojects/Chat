@@ -62,7 +62,7 @@ namespace Chat.Models
                 .HasDefaultValueSql("(getdate())");
 
             builder.Property(e => e.Ishidden).HasColumnName("ISHIDDEN");
-            builder.Property(e => e.SessionUserId).HasColumnName("SESSION_ID");
+            builder.Property(e => e.SessionUserId).HasColumnName("SESSION_USER_ID");
             builder.Property(e => e.Text).HasColumnName("TEXT");
 
             builder.HasOne(d => d.SessionUserMap)
