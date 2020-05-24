@@ -62,21 +62,14 @@ namespace Chat.Models
                 .HasDefaultValueSql("(getdate())");
 
             builder.Property(e => e.Ishidden).HasColumnName("ISHIDDEN");
-            builder.Property(e => e.SessionId).HasColumnName("SESSION_ID");
+            builder.Property(e => e.SessionUserId).HasColumnName("SESSION_ID");
             builder.Property(e => e.Text).HasColumnName("TEXT");
-            builder.Property(e => e.UserId).HasColumnName("USER_ID");
 
-            builder.HasOne(d => d.Session)
+            builder.HasOne(d => d.SessionUserMap)
                 .WithMany(p => p.Messages)
-                .HasForeignKey(d => d.SessionId)
+                .HasForeignKey(d => d.SessionUserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__MESSAGES__SESSIO__32E0915F");
-
-            builder.HasOne(d => d.User)
-                .WithMany(p => p.Messages)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__MESSAGES__USER_I__31EC6D26");
+                .HasConstraintName("FK_MESSAGES_SESSIONS_USERS_MAP");
         }
         public void SessionConfigure(EntityTypeBuilder<Session> builder)
         {

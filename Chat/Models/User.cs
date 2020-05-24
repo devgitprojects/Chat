@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Chat.Models
 {
@@ -8,7 +9,6 @@ namespace Chat.Models
         public User()
         {
             HiddenMessages = new HashSet<HiddenMessage>();
-            Messages = new HashSet<Message>();
             SessionsUsersMap = new HashSet<SessionUserMap>();
         }
 
@@ -18,7 +18,6 @@ namespace Chat.Models
         public bool? Isactive { get; set; }
 
         public virtual ICollection<HiddenMessage> HiddenMessages { get; set; }
-        public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<SessionUserMap> SessionsUsersMap { get; set; }
     }
 }
