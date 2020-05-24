@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Chat.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -39,10 +40,10 @@ namespace Chat.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<ActionResult<SessionUserMap>> CreateSession([FromBody]int userId)
+        public async Task<ActionResult<SessionUserMap>> CreateSession(SessionCreationData sessionCreationData)
         {
-            User user = await DataProvider.Users.FirstOrDefaultAsync(x => x.Id == userId);
-            return await CreateNewSessionUserMap(new SessionUserMap(user, new Session()));
+            User user = await DataProvider.Users.FirstOrDefaultAsync(x => x.Id == sessionCreationData.UserId);
+            return await CreateNewSessionUserMap(new SessionUserMap(user, new Session(sessionCreationData.IsAdminSession), isAdmin: true));
         }
 
         [HttpPost]
@@ -50,8 +51,8 @@ namespace Chat.Controllers
         public async Task<ActionResult<SessionUserMap>> ConnectUserToSession(SimpleSessionUserMap sessionUserMap)
         {
             Session session = await DataProvider.Sessions.FirstOrDefaultAsync(x => x.Id == sessionUserMap.SessionId);
-            User user = await DataProvider.Users.FirstOrDefaultAsync(x => x.Id == sessionUserMap.UserId);
-            return await CreateNewSessionUserMap(new SessionUserMap(user, session));
+            User user = await DataProvider.Users.FirstOrDefaultAsync(x => x.Id == sessionUserMap.UserId);            
+            return await CreateNewSessionUserMap(new SessionUserMap(user, session, isAdmin: false));
         }
 
         [HttpPost]
@@ -61,6 +62,16 @@ namespace Chat.Controllers
             if (sessionUserMap == null || sessionUserMap.User == null || sessionUserMap.Session == null)
             {
                 return BadRequest();
+            }
+
+            if (sessionUserMap.Session.IsAdminSession)
+            {
+                if (!DataProvider.SessionsUsersMap
+                    .Where(x => x.UserId == sessionUserMap.User.Id)
+                    .Any(x => x.IsAdmin))
+                {
+                    return BadRequest("Regular user could not be connected to admin session.");
+                }
             }
 
             DataProvider.SessionsUsersMap.Add(sessionUserMap);

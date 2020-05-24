@@ -13,9 +13,9 @@ namespace Chat.Models
         }
 
         public int Id { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public bool? Isactive { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ICollection<HiddenMessage> HiddenMessages { get; set; }
         public virtual ICollection<SessionUserMap> SessionsUsersMap { get; set; }

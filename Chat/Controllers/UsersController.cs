@@ -21,14 +21,12 @@ namespace Chat.Controllers
 
         protected ChatContext DataProvider { get; private set; }
 
-        // GET: <controller>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
             return await DataProvider.Users.ToArrayAsync();
         }
 
-        // GET <controller>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> Get(int id)
         {
@@ -41,7 +39,6 @@ namespace Chat.Controllers
             return new ObjectResult(user);
         }
 
-        // POST <controller>
         [HttpPost]
         public async Task<ActionResult<User>> Post(User user)
         {
@@ -55,7 +52,6 @@ namespace Chat.Controllers
             return Ok(user);
         }
 
-        // PUT <controller>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> Put(User user)
         {
@@ -73,7 +69,6 @@ namespace Chat.Controllers
             return Ok(user);
         }
 
-        // DELETE <controller>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> Delete(int id)
         {

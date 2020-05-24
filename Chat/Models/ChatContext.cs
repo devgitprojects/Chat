@@ -62,7 +62,7 @@ namespace Chat.Models
                 .HasColumnType("datetime")
                 .HasDefaultValueSql("(getdate())");
 
-            builder.Property(e => e.Ishidden).HasColumnName("ISHIDDEN");
+            builder.Property(e => e.IsHidden).HasColumnName("IS_HIDDEN");
             builder.Property(e => e.SessionUserId).HasColumnName("SESSION_USER_ID");
             builder.Property(e => e.Text).HasColumnName("TEXT");
 
@@ -76,30 +76,34 @@ namespace Chat.Models
         {
             builder.ToTable("SESSIONS");
             builder.Property(e => e.Id).HasColumnName("ID");
+            builder.Property(e => e.IsAdminSession).HasColumnName("IS_ADMIN_SESSION");
 
             builder.Property(e => e.Date)
                 .HasColumnName("DATE")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
         }
 
         public void SessionUserMapConfigure(EntityTypeBuilder<SessionUserMap> builder)
         {
             builder.ToTable("SESSIONS_USERS_MAP");
             builder.Property(e => e.Id).HasColumnName("ID");
-            builder.Property(e => e.Isadmin).HasColumnName("ISADMIN");
+            builder.Property(e => e.IsAdmin).HasColumnName("IS_ADMIN");
             builder.Property(e => e.SessionId).HasColumnName("SESSION_ID");
             builder.Property(e => e.UserId).HasColumnName("USER_ID");
+            
+            builder.HasIndex(e => new { e.UserId, e.SessionId })
+                .HasName("UQ_SESSION_USER")
+                .IsUnique();
 
             builder.HasOne(d => d.Session)
                 .WithMany(p => p.SessionsUsersMap)
                 .HasForeignKey(d => d.SessionId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__SESSIONS___SESSI__2D27B809");
 
             builder.HasOne(d => d.User)
                 .WithMany(p => p.SessionsUsersMap)
                 .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__SESSIONS___USER___2C3393D0");
         }
 
@@ -107,18 +111,18 @@ namespace Chat.Models
         {
             builder.ToTable("USERS");
             builder.Property(e => e.Id).HasColumnName("ID");
-            builder.Property(e => e.Firstname)
+            builder.Property(e => e.FirstName)
                 .IsRequired()
-                .HasColumnName("FIRSTNAME")
+                .HasColumnName("FIRST_NAME")
                 .HasMaxLength(50);
 
-            builder.Property(e => e.Isactive)
+            builder.Property(e => e.IsActive)
                 .IsRequired()
-                .HasColumnName("ISACTIVE")
+                .HasColumnName("IS_ACTIVE")
                 .HasDefaultValueSql("((1))");
 
-            builder.Property(e => e.Lastname)
-                .HasColumnName("LASTNAME")
+            builder.Property(e => e.LastName)
+                .HasColumnName("LAST_NAME")
                 .HasMaxLength(50);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
