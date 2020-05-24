@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Chat.Models
@@ -21,7 +19,7 @@ namespace Chat.Models
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<SessionUserMap> SessionsUsersMap { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public DbSet<RecentlyActiveSessionData> RecentlyActiveSessionData { get; set; }
+        public virtual DbSet<RecentlyActiveSessionData> RecentlyActiveSessionData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

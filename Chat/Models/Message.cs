@@ -1,5 +1,4 @@
-﻿using Chat.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Chat.Models

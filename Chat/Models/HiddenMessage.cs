@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Chat.Models
+﻿namespace Chat.Models
 {
     public partial class HiddenMessage
     {
