@@ -21,31 +21,31 @@ namespace Chat.Controllers
         protected override DbSet<Message> Models => DataProvider.Messages;
 
         [HttpGet("[action]/{sessionId}")]
-        public ActionResult<IEnumerable<Message>> GetMessagesBySessionId(int sessionId)
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessagesBySessionId(int sessionId)
         {
-            return GetMessagesBySessionIdQuery(sessionId).ToArray();
+            return await GetMessagesBySessionIdQuery(sessionId).ToArrayAsync();
         }
 
         [HttpGet("[action]/{sessionId}/{userId}")]
         public ActionResult<IEnumerable<Message>> GetUserVisibleMessagesBySessionId(int sessionId, int userId)
         {
             var userhiddenMessages = GetUserHiddenMessages(userId);
-            return GetMessagesBySessionIdQuery(sessionId)
+            return GetMessagesBySessionIdEnumerable(sessionId)
                 .Where(msg => !userhiddenMessages.Contains(msg.Id))
                 .ToArray();
         }
 
         [HttpGet("[action]/{sessionId}/{lastMessageDate}")]
-        public ActionResult<IEnumerable<Message>> GetMessagesBySessionIdAndMinimumDate(int sessionId, DateTime lastMessageDate)
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessagesBySessionIdAndMinimumDate(int sessionId, DateTime lastMessageDate)
         {
-            return GetMessagesBySessionIdAndMinimumDateQuery(sessionId, lastMessageDate).ToArray();
+            return await GetMessagesBySessionIdAndMinimumDateQuery(sessionId, lastMessageDate).ToArrayAsync();
         }
 
         [HttpGet("[action]/{sessionId}/{userId}/{lastMessageDate}")]
         public ActionResult<IEnumerable<Message>> GetUserVisibleMessagesBySessionIdAndMinimumDate(int sessionId, int userId, DateTime lastMessageDate)
         {
             var userhiddenMessages = GetUserHiddenMessages(userId);
-            return GetMessagesBySessionIdAndMinimumDateQuery(sessionId, lastMessageDate)                
+            return GetMessagesBySessionIdAndMinimumDateEnumerable(sessionId, lastMessageDate)                
                 .Where(msg => !userhiddenMessages.Contains(msg.Id))
                 .ToArray();
         }
@@ -75,18 +75,27 @@ namespace Chat.Controllers
                 .ToArray();
         }
 
-        private IEnumerable<Message> GetMessagesBySessionIdAndMinimumDateQuery(int sessionId, DateTime lastMessageDate)
+        private IQueryable<Message> GetMessagesBySessionIdAndMinimumDateQuery(int sessionId, DateTime lastMessageDate)
         {
             return Models
                 .FromSqlRaw("GetMessagesBySessionIdAndMinimumDate @sessionId, @lastMessageDate",
                 new SqlParameter("@sessionId", sessionId),
-                new SqlParameter("@lastMessageDate", lastMessageDate))
-                .AsEnumerable();
+                new SqlParameter("@lastMessageDate", lastMessageDate));
         }
-        private IEnumerable<Message> GetMessagesBySessionIdQuery(int sessionId)
+        private IEnumerable<Message> GetMessagesBySessionIdAndMinimumDateEnumerable(int sessionId, DateTime lastMessageDate)
+        {
+            return GetMessagesBySessionIdAndMinimumDateQuery(sessionId, lastMessageDate).AsEnumerable();
+        }
+
+        private IQueryable<Message> GetMessagesBySessionIdQuery(int sessionId)
         {
             return Models
-                .FromSqlRaw("GetMessagesBySessionId @sessionId", new SqlParameter("@sessionId", sessionId))
+                .FromSqlRaw("GetMessagesBySessionId @sessionId", new SqlParameter("@sessionId", sessionId));
+        }
+
+        private IEnumerable<Message> GetMessagesBySessionIdEnumerable(int sessionId)
+        {
+            return GetMessagesBySessionIdQuery(sessionId)
                 .AsEnumerable();
         }
     }
