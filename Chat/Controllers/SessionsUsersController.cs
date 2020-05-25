@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Chat.Controllers
     [Route("[controller]")]
     public class SessionsUsersController : BaseController<SessionUserMap>
     {
-        public SessionsUsersController(ChatContext dataProvider) : base(dataProvider) { }
+        public SessionsUsersController(ChatContext dataProvider, ILogger<SessionUserMap> logger) : base(dataProvider, logger) { }
 
         protected override DbSet<SessionUserMap> Models => DataProvider.SessionsUsersMap;
 

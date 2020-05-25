@@ -1,0 +1,197 @@
+5/25/2020 01:22:56 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 01:22:57 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 01:22:57 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[ID], [u].[FIRST_NAME], [u].[IS_ACTIVE], [u].[LAST_NAME]
+FROM [USERS] AS [u] 
+5/25/2020 01:23:13 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 01:23:13 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[ID], [u].[FIRST_NAME], [u].[IS_ACTIVE], [u].[LAST_NAME]
+FROM [USERS] AS [u] 
+5/25/2020 01:44:57 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 01:44:57 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 01:44:57 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (73ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 01:54:33 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 01:54:33 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 01:54:34 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [m].[ID], [m].[DATE], [m].[IS_HIDDEN], [m].[SESSION_USER_ID], [m].[TEXT]
+FROM [MESSAGES] AS [m] 
+5/25/2020 01:54:59 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 01:54:59 Microsoft.EntityFrameworkCore.Database.Command Error Failed executing DbCommand (49ms) [Parameters=[@sessionId='?' (DbType = Int32), @lastMessageDate='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionIdAndMinimumDate @sessionId @lastMessageDate 
+5/25/2020 01:54:59 Microsoft.EntityFrameworkCore.Query Error An exception occurred while iterating over the results of a query for context type 'Chat.Models.ChatContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near '@lastMessageDate'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__164_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:2586abb9-da0d-4ffc-8807-77308ed1d1ab
+Error Number:102,State:1,Class:15 
+5/25/2020 01:56:59 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 01:56:59 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 01:56:59 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (83ms) [Parameters=[@sessionId='?' (DbType = Int32), @lastMessageDate='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionIdAndMinimumDate @sessionId, @lastMessageDate 
+5/25/2020 02:41:55 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 02:41:55 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:41:56 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (64ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HIDDEN_MESSAGES] ([MESSAGE_ID], [USER_ID])
+VALUES (@p0, @p1);
+SELECT [ID]
+FROM [HIDDEN_MESSAGES]
+WHERE @@ROWCOUNT = 1 AND [ID] = scope_identity(); 
+5/25/2020 02:42:46 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:42:46 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (7ms) [Parameters=[@__messageId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [h].[ID], [h].[MESSAGE_ID], [h].[USER_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE ([h].[MESSAGE_ID] = @__messageId_0) AND ([h].[USER_ID] = @__userId_1) 
+5/25/2020 02:42:53 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [h].[ID], [h].[MESSAGE_ID], [h].[USER_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE [h].[ID] = @__id_0 
+5/25/2020 02:42:53 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [HIDDEN_MESSAGES]
+WHERE [ID] = @p0;
+SELECT @@ROWCOUNT; 
+5/25/2020 02:43:41 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:43:41 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HIDDEN_MESSAGES] ([MESSAGE_ID], [USER_ID])
+VALUES (@p0, @p1);
+SELECT [ID]
+FROM [HIDDEN_MESSAGES]
+WHERE @@ROWCOUNT = 1 AND [ID] = scope_identity(); 
+5/25/2020 02:44:38 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:44:38 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (12ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 02:45:22 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:45:22 Microsoft.EntityFrameworkCore.Query Error An exception occurred while iterating over the results of a query for context type 'Chat.Models.ChatContext'.
+System.InvalidOperationException: FromSqlRaw or FromSqlInterpolated was called with non-composable SQL and with a query composing over it. Consider calling `AsEnumerable` after the FromSqlRaw or FromSqlInterpolated method to perform the composition on the client side.
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitFromSql(FromSqlExpression fromSqlExpression)
+   at Microsoft.EntityFrameworkCore.Query.SqlExpressionVisitor.VisitExtension(Expression extensionExpression)
+   at System.Linq.Expressions.Expression.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.<VisitSelect>b__18_1(TableExpressionBase e)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GenerateList[T](IReadOnlyList`1 items, Action`1 generationAction, Action`1 joinAction)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitSelect(SelectExpression selectExpression)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GetCommand(SelectExpression selectExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalCommandCache.GetRelationalCommand(IReadOnlyDictionary`2 parameters)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync() 
+5/25/2020 02:46:19 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:46:23 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT [h].[MESSAGE_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE [h].[USER_ID] = @__userId_0 
+5/25/2020 02:46:32 Microsoft.EntityFrameworkCore.Query Error An exception occurred while iterating over the results of a query for context type 'Chat.Models.ChatContext'.
+System.InvalidOperationException: FromSqlRaw or FromSqlInterpolated was called with non-composable SQL and with a query composing over it. Consider calling `AsEnumerable` after the FromSqlRaw or FromSqlInterpolated method to perform the composition on the client side.
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitFromSql(FromSqlExpression fromSqlExpression)
+   at Microsoft.EntityFrameworkCore.Query.SqlExpressionVisitor.VisitExtension(Expression extensionExpression)
+   at System.Linq.Expressions.Expression.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.<VisitSelect>b__18_1(TableExpressionBase e)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GenerateList[T](IReadOnlyList`1 items, Action`1 generationAction, Action`1 joinAction)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitSelect(SelectExpression selectExpression)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GetCommand(SelectExpression selectExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalCommandCache.GetRelationalCommand(IReadOnlyDictionary`2 parameters)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync() 
+5/25/2020 02:47:34 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:47:34 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (10ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 02:48:19 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:48:26 Microsoft.EntityFrameworkCore.Query Error An exception occurred while iterating over the results of a query for context type 'Chat.Models.ChatContext'.
+System.InvalidOperationException: FromSqlRaw or FromSqlInterpolated was called with non-composable SQL and with a query composing over it. Consider calling `AsEnumerable` after the FromSqlRaw or FromSqlInterpolated method to perform the composition on the client side.
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitFromSql(FromSqlExpression fromSqlExpression)
+   at Microsoft.EntityFrameworkCore.Query.SqlExpressionVisitor.VisitExtension(Expression extensionExpression)
+   at System.Linq.Expressions.Expression.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.<VisitSelect>b__18_1(TableExpressionBase e)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GenerateList[T](IReadOnlyList`1 items, Action`1 generationAction, Action`1 joinAction)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitSelect(SelectExpression selectExpression)
+   at Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GetCommand(SelectExpression selectExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalCommandCache.GetRelationalCommand(IReadOnlyDictionary`2 parameters)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync() 
+5/25/2020 02:54:53 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 02:54:54 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:54:55 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (64ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 02:54:55 Microsoft.EntityFrameworkCore.Database.Command Error Failed executing DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN @__p_1 IN (
+        SELECT [h].[MESSAGE_ID]
+        FROM [HIDDEN_MESSAGES] AS [h]
+        WHERE [h].[USER_ID] = @__userId_0
+    )
+     THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+5/25/2020 02:54:55 Microsoft.EntityFrameworkCore.Query Error An exception occurred while iterating over the results of a query for context type 'Chat.Models.ChatContext'.
+System.InvalidOperationException: There is already an open DataReader associated with this Command which must be closed first.
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlConnection.ValidateConnectionForExecute(String method, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlCommand.ValidateCommand(Boolean isAsync, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext() 
+5/25/2020 02:56:18 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 02:56:18 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:56:19 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (54ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT [h].[MESSAGE_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE [h].[USER_ID] = @__userId_0 
+5/25/2020 02:56:20 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (5ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 02:57:06 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:57:06 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (3ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 02:59:02 Microsoft.EntityFrameworkCore.Model.Validation Warning The 'bool' property 'IsActive' on entity type 'User' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead so that the default will only be used for inserts when the property value is 'null'. 
+5/25/2020 02:59:03 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:59:03 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (62ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 02:59:16 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 02:59:16 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT [h].[MESSAGE_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE [h].[USER_ID] = @__userId_0 
+5/25/2020 02:59:16 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (0ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 
+5/25/2020 03:00:41 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 03:00:41 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (16ms) [Parameters=[@__messageId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [h].[ID], [h].[MESSAGE_ID], [h].[USER_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE ([h].[MESSAGE_ID] = @__messageId_0) AND ([h].[USER_ID] = @__userId_1) 
+5/25/2020 03:00:41 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [h].[ID], [h].[MESSAGE_ID], [h].[USER_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE [h].[ID] = @__id_0 
+5/25/2020 03:00:41 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [HIDDEN_MESSAGES]
+WHERE [ID] = @p0;
+SELECT @@ROWCOUNT; 
+5/25/2020 03:01:05 Microsoft.EntityFrameworkCore.Infrastructure Information Entity Framework Core 3.1.4 initialized 'ChatContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None 
+5/25/2020 03:01:05 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT [h].[MESSAGE_ID]
+FROM [HIDDEN_MESSAGES] AS [h]
+WHERE [h].[USER_ID] = @__userId_0 
+5/25/2020 03:01:05 Microsoft.EntityFrameworkCore.Database.Command Information Executed DbCommand (6ms) [Parameters=[@sessionId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+GetMessagesBySessionId @sessionId 

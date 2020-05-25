@@ -14,11 +14,8 @@ namespace Chat.Logging
         {
             path = logFilePath;
         }
-
-        public ILogger CreateLogger(string categoryName)
-        {
-            return new FileLogger(categoryName, path);
-        }
+        public string FilePath { get; set; }
+        public ILogger CreateLogger(string categoryName) => new FileLogger(categoryName, path);
 
         public void Dispose() { }
     }

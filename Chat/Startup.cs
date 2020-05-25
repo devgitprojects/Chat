@@ -19,6 +19,7 @@ namespace Chat
         }
 
         public IConfiguration Configuration { get; }
+        public static readonly ILoggerFactory AppLoggerFactory = LoggerFactory.Create(builder => { builder.AddProvider(new FileLoggerProvider("logDB.txt")); });
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -28,13 +29,12 @@ namespace Chat
             var config = builder.Build();
             string connectionString = config.GetConnectionString("DefaultConnection");
             var optionsBuilder = new DbContextOptionsBuilder<ChatContext>();
-
-            optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder =>
+            services.AddDbContext<ChatContext>(optionsBuilder =>
             {
-                builder.AddProvider(new FileLoggerProvider("log.txt"));
-            }));
-
-            services.AddDbContext<ChatContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
+                optionsBuilder
+                .UseLoggerFactory(AppLoggerFactory)
+                .UseSqlServer(connectionString); 
+            }); 
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }

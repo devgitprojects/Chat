@@ -1,6 +1,7 @@
 ﻿using Chat.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,9 +13,12 @@ namespace Chat.Controllers
     [ApiController]
     public abstract class BaseController<TEntity> : Controller where TEntity : BaseModel
     {
-        public BaseController(ChatContext dataProvider)
+        private readonly ILogger log;
+
+        public BaseController(ChatContext dataProvider, ILogger<TEntity> logger)
         {
             DataProvider = dataProvider;
+            log = logger;
         }
 
         protected ChatContext DataProvider { get; private set; }

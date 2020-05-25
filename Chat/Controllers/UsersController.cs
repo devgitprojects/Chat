@@ -1,6 +1,7 @@
 ﻿using Chat.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Chat.Controllers
     [Route("[controller]")]
     public class UsersController : BaseController<User>
     {
-        public UsersController(ChatContext dataProvider) : base(dataProvider) { }
+        public UsersController(ChatContext dataProvider, ILogger<User> logger) : base(dataProvider, logger) { }
 
         protected override DbSet<User> Models => DataProvider.Users;
     }
